@@ -11,11 +11,3 @@
 //在服务器直接使用
 1）cd ~/hubot/hu/bash/handlers/
 2) bash u ms（bash u 相当于 @211 hu u）
-
-
-tail -f /data/log/APPservice/2016-11-17.log  ->  查看线上日志的命令
-
-
-6fbfdeecc8933bd3a6d9036831e2229be3f5416a -> appService非大客户版本 -> 2016-11-21 14：48：00
-5c5e986f479e89c9229be6e5a97bfc8c02d09bca -> manageService -> 2016-11-21 14:48:00
-9311f7f6be10e3c27664530edf7af9afa2bf05fe -> brandService -> 2016-11-21 14:48:00
