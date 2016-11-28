@@ -34,8 +34,8 @@ npm install --registry=https://registry.npm.taobao.org
 
 #制作镜像
 echo "制作并推送镜像.."
-echo "docker build -t "$registry"/"${Project,,}" /opt/"$Project" && docker push "$registry"/"${Project,,}
-docker build -t $registry/${Project,,} /opt/$Project && docker push $registry/${Project,,} && exit 0
+echo "docker build -t "$registry"/"${Project,,}":"$Branch "/opt/"$Project" && docker push "$registry"/"${Project,,}
+docker build -t $registry/${Project,,}:$Branch /opt/$Project && docker push $registry/${Project,,} && exit 0
 #防止上一条出错未执行exit 0
 echo "更新出错" && exit 0
 fi
@@ -52,8 +52,8 @@ npm install --registry=https://registry.npm.taobao.org
 
 #制作镜像
 echo "制作并推送镜像.."
-echo "docker build -t "$registry"/"${Project,,}" /opt/"$Project" && docker push "$registry"/"${Project,,}
-docker build -t $registry/${Project,,} /opt/$Project && docker push $registry/${Project,,} && exit 0
+echo "docker build -t "$registry"/"${Project,,}":"$Branch "/opt/"$Project" && docker push "$registry"/"${Project,,}
+docker build -t $registry/${Project,,}:$Branch /opt/$Project && docker push $registry/${Project,,} && exit 0
 
 #防止上一条出错未执行exit 0
 echo "更新出错" && exit 0
