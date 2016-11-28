@@ -1,0 +1,28 @@
+#!/bin/bash
+
+
+echo "正在容器内操作.."
+#更新npm包
+echo "更新"$1" npm install --registry=https://registry.npm.taobao.org"
+cd /opt/$1/
+npm install --registry=https://registry.npm.taobao.org
+
+#启动项目
+if [ $2 == start ];then 
+echo "pm2 "$2" npm --name "$1" -- run start.."
+pm2 $2 npm --name $1 -- run start
+fi
+
+#重启项目
+if [ $2 == restart ];then 
+echo "pm2 stop "$1".."
+pm2 stop $1
+echo "pm2 delete "$1".."
+pm2 delete $1
+echo "pm2 start npm --name "$1" -- run start.."
+pm2 start npm --name $1 -- run start
+fi
+
+#通用结束事件
+echo "################容器内操作完成################"
+exit 0

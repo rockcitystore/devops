@@ -1,0 +1,21 @@
+1）tmux a -t hu （新建连接1）
+2）cd ~/hubot/hu/bash/handlers/ （新建连接2）
+3）rz -y （在连接2选择刚刚修改好的u）
+4）chmod 777 u  (在连接2将u修改为可执行文件)
+5）ctrl+c结束原进程（连接1）
+6）env HUBOT_SLACK_TOKEN=xoxb-74303367205-tvPF94Om1iWcrtLBqknJaSOj env HUBOT_SHELLCMD_KEYWORD=hu  ~/hubot/hu/bin/hubot --adapter slack （连接1）
+7） @211 hu u ms （第一次执行会报错 因为没有文件夹 第二次启动就可以了）
+8)  cd /opt/liveManageService（连接2）
+9)  pm2 start liveManageService.js （连接2）
+
+//在服务器直接使用
+1）cd ~/hubot/hu/bash/handlers/
+2) bash u ms（bash u 相当于 @211 hu u）
+
+
+tail -f /data/log/APPservice/2016-11-17.log  ->  查看线上日志的命令
+
+
+6fbfdeecc8933bd3a6d9036831e2229be3f5416a -> appService非大客户版本 -> 2016-11-21 14：48：00
+5c5e986f479e89c9229be6e5a97bfc8c02d09bca -> manageService -> 2016-11-21 14:48:00
+9311f7f6be10e3c27664530edf7af9afa2bf05fe -> brandService -> 2016-11-21 14:48:00

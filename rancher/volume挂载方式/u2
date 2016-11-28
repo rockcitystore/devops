@@ -1,0 +1,106 @@
+#!/bin/bash
+if [ ! -n "$1" ] ;then
+echo "请输入参数!"  
+exit 0
+fi
+
+
+################################APPService################################
+if [ $1 == "app" ] || [ $1 == "APP" ] || [ $1 == "appService" ] || [ $1 == "AppService" ];then
+
+#config
+#folder name ／ project name  , "/opt/APPService" 
+Project="APPService"
+#git url
+GitUrl=http://git.djdev.com/leovs/$Project.git
+#git branch
+Branch="dejionline"
+#docker container name or id , use `docker ps －a` to find it
+dockerContainer="9bc88126997e"
+
+
+echo "################宿主机操作################"
+cd /opt/
+
+for filename in `ls`
+do
+#项目已存在
+if [ $filename == $Project -a "`ls -A $Project`" != "" ];then 
+echo $filename
+echo "正在重启："$Project
+cd /opt/$Project/
+#重新拉取
+echo "git pull "$GitUrl $Branch
+git pull $GitUrl $Branch
+#进入容器 
+echo "################容器操作################"
+docker exec -it $dockerContainer bash ~/hubot/hu/bash/handlers/u2InsideContainer $Project restart && echo "################宿主机操作完成################" && echo "更新完成" && exit 0
+#防止上一条出错未执行exit 0
+echo "更新出错" && exit 0
+fi
+done
+
+#新项目
+echo "新建项目："$Project
+echo "git clone "$GitUrl
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+
+#进入容器 
+echo "################容器操作################"
+docker exec -it $dockerContainer bash ~/hubot/hu/bash/handlers/u2InsideContainer $Project start && echo "################宿主机操作完成################" && echo "更新完成" && exit 0
+#防止上一条出错未执行exit 0
+echo "更新出错" && exit 0
+fi 
+
+################################manageService################################
+if [ $1 == "ms" ] || [ $1 == "MS" ] || [ $1 == "manageService" ] || [ $1 == "manageservice" ];then
+
+#config
+#folder name ／ project name  , "/opt/APPService" 
+Project="manageService"
+#git url
+GitUrl=http://git.djdev.com/leovs/$Project.git
+#git branch
+Branch="dejionline"
+#docker container name or id , use `docker ps －a` to find it
+dockerContainer="012de7627732"
+
+
+echo "################宿主机操作################"
+cd /opt/
+
+for filename in `ls`
+do
+#项目已存在
+if [ $filename == $Project -a "`ls -A $Project`" != "" ];then 
+echo $filename
+echo "正在重启："$Project
+cd /opt/$Project/
+#重新拉取
+echo "git pull "$GitUrl $Branch
+git pull $GitUrl $Branch
+#进入容器 
+echo "################容器操作################"
+docker exec -it $dockerContainer bash ~/hubot/hu/bash/handlers/u2InsideContainer $Project restart && echo "################宿主机操作完成################" && echo "更新完成" && exit 0
+#防止上一条出错未执行exit 0
+echo "更新出错" && exit 0
+fi
+done
+
+#新项目
+echo "新建项目："$Project
+echo "git clone "$GitUrl
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+
+#进入容器 
+echo "################容器操作################"
+docker exec -it $dockerContainer bash ~/hubot/hu/bash/handlers/u2InsideContainer $Project start && echo "################宿主机操作完成################" && echo "更新完成" && exit 0
+#防止上一条出错未执行exit 0
+echo "更新出错" && exit 0
+fi 

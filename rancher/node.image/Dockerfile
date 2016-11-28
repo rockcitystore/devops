@@ -1,0 +1,5 @@
+FROM 192.168.33.211:5000/node:6.9.1
+ENV APPNAME=APPService
+COPY /opt/$APPNAME /opt/$APPNAME
+RUN cd /opt/$APPNAME
+CMD [ "npm start" ]

@@ -1,0 +1,60 @@
+#!/bin/bash
+if [ ! -n "$1" ] ;then
+echo "请输入参数!"  
+exit 0
+fi
+
+
+################################APPService################################
+if [ $1 == "app" ] || [ $1 == "APP" ] || [ $1 == "appService" ] || [ $1 == "AppService" ];then
+
+#config
+#folder name ／ project name  , "/opt/APPService" 
+Project="APPService"
+#git url
+GitUrl=http://git.djdev.com/leovs/$Project.git
+#git branch
+Branch="dejionline"
+#docker registry
+registry="192.168.33.211:5000"
+
+cd /opt/
+
+for filename in `ls`
+do
+#项目已存在
+if [ $filename == $Project -a "`ls -A $Project`" != "" ];then 
+echo $filename
+echo "正在重启："$Project
+cd /opt/$Project/
+#重新拉取
+echo "git pull "$GitUrl $Branch
+git pull $GitUrl $Branch
+npm install --registry=https://registry.npm.taobao.org
+
+#制作镜像
+echo "制作并推送镜像.."
+echo "docker build -t "$registry"/"${Project,,}" /opt/"$Project" && docker push "$registry"/"${Project,,}
+docker build -t $registry/${Project,,} /opt/$Project && docker push $registry/${Project,,} && exit 0
+#防止上一条出错未执行exit 0
+echo "更新出错" && exit 0
+fi
+done
+
+#新项目
+echo "新建项目："$Project
+echo "git clone "$GitUrl
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+npm install --registry=https://registry.npm.taobao.org
+
+#制作镜像
+echo "制作并推送镜像.."
+echo "docker build -t "$registry"/"${Project,,}" /opt/"$Project" && docker push "$registry"/"${Project,,}
+docker build -t $registry/${Project,,} /opt/$Project && docker push $registry/${Project,,} && exit 0
+
+#防止上一条出错未执行exit 0
+echo "更新出错" && exit 0
+fi 

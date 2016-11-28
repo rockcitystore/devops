@@ -1,0 +1,354 @@
+#!/bin/bash
+
+
+
+if [ $1 == "MS" ] || [ $1 == "ms" ] || [ $1 == "ManageService" ] || [ $1 == "manageService" ];then
+Project="manageService"
+Branch="dejionline"
+GitUrl=http://git.djdev.com/leovs/$Project.git
+PM2NAME="manage"
+echo "正在重启："$Project
+cd /opt/$Project/
+#压缩node_modules
+for filename in `ls`
+do
+#echo $filename
+if [ $filename == "node_modules" ];then
+zip -q -r "$Project".zip $filename  
+fi
+done
+
+mv "$Project".zip /opt/"$Project".zip
+cd /opt/
+#删除原文件夹
+rm -rf $Project/
+#重新拉git
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+#解压node_modules
+mv /opt/"$Project".zip /opt/$Project/
+echo "解压中.."
+unzip -q -o "$Project".zip
+#更新npm包
+echo "更新npm包.."
+cnpm update
+#重启项目
+pm2 restart $PM2NAME
+fi
+
+
+
+if [ $1 == "BMS" ] || [ $1 == "bms" ] || [ $1 == "BrandManageService" ] || [ $1 == "brandManageService" ];then
+Project="BrandManageService"
+Branch="dejionline"
+GitUrl=http://git.djdev.com/chenan/$Project.git
+PM2NAME=$Project
+echo "正在重启："$Project
+cd /opt/$Project/
+#压缩node_modules
+for filename in `ls`
+do
+#echo $filename
+if [ $filename == "node_modules" ];then
+zip -q -r "$Project".zip $filename  
+fi
+done
+
+mv "$Project".zip /opt/"$Project".zip
+cd /opt/
+#删除原文件夹
+rm -rf $Project/
+#重新拉git
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+#解压node_modules
+mv /opt/"$Project".zip /opt/$Project/
+echo "解压中.."
+unzip -q -o "$Project".zip
+#更新npm包
+echo "更新npm包.."
+cnpm update
+#重启项目
+pm2 restart $PM2NAME
+fi 
+
+
+
+if [ $1 == "BS" ] || [ $1 == "bs" ] || [ $1 == "BrandService" ] || [ $1 == "brandService" ];then
+Project="BrandService"
+Branch="dejionline"
+GitUrl=http://git.djdev.com/chenan/$Project.git
+PM2NAME=$Project
+echo "正在重启："$Project
+cd /opt/$Project/
+#压缩node_modules
+for filename in `ls`
+do
+#echo $filename
+if [ $filename == "node_modules" ];then
+zip -q -r "$Project".zip $filename  
+fi
+done
+
+mv "$Project".zip /opt/"$Project".zip
+cd /opt/
+#删除原文件夹
+rm -rf $Project/
+#重新拉git
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+#解压node_modules
+mv /opt/"$Project".zip /opt/$Project/
+echo "解压中.."
+unzip -q -o "$Project".zip
+#更新npm包
+echo "更新npm包.."
+cnpm update
+#重启项目
+pm2 restart $PM2NAME
+fi 
+
+
+if [ $1 == "app" ] || [ $1 == "APP" ] || [ $1 == "appService" ] || [ $1 == "AppService" ];then
+Project="APPservice"
+Branch="dejionline"
+GitUrl=http://git.djdev.com/leovs/$Project.git
+PM2NAME="appserver"
+echo "正在重启："$Project
+cd /opt/$Project/
+#压缩node_modules
+for filename in `ls`
+do
+#echo $filename
+if [ $filename == "node_modules" ];then
+zip -q -r "$Project".zip $filename  
+fi
+done
+
+mv "$Project".zip /opt/"$Project".zip
+cd /opt/
+#删除原文件夹
+rm -rf $Project/
+#重新拉git
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+#解压node_modules
+mv /opt/"$Project".zip /opt/$Project/
+echo "解压中.."
+unzip -q -o "$Project".zip
+#更新npm包
+echo "更新npm包.."
+cnpm update
+#重启项目
+pm2 restart $PM2NAME
+fi 
+
+
+
+
+if [ $1 == "live" ] || [ $1 == "LIVE" ] || [ $1 == "li" ] || [ $1 == "LI" ];then
+Project="liveService"
+Branch="master"
+GitUrl=http://git.djdev.com/chenan/$Project.git
+PM2NAME="liveService"
+echo "正在重启："$Project
+cd /opt/$Project/
+#压缩node_modules
+for filename in `ls`
+do
+#echo $filename
+if [ $filename == "node_modules" ];then
+zip -q -r "$Project".zip $filename  
+fi
+done
+
+mv "$Project".zip /opt/"$Project".zip
+cd /opt/
+#删除原文件夹
+rm -rf $Project/
+#重新拉git
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+#解压node_modules
+mv /opt/"$Project".zip /opt/$Project/
+echo "解压中.."
+unzip -q -o "$Project".zip
+#更新npm包
+echo "更新npm包.."
+cnpm update
+#重启项目
+pm2 restart $PM2NAME
+fi 
+
+
+
+#theme 
+if [ $1 == "theme" ] || [ $1 == "ts" ] || [ $1 == "themeService" ];then
+Project="themeService"
+Branch="master"
+GitUrl=http://git.djdev.com/lixiaoyan/$Project.git
+PM2NAME="themeService"
+echo "正在重启："$Project
+cd /opt/$Project/
+#压缩node_modules
+for filename in `ls`
+do
+#echo $filename
+if [ $filename == "node_modules" ];then
+zip -q -r "$Project".zip $filename  
+fi
+done
+
+mv "$Project".zip /opt/"$Project".zip
+cd /opt/
+#删除原文件夹
+rm -rf $Project/
+#重新拉git
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+#解压node_modules
+mv /opt/"$Project".zip /opt/$Project/
+echo "解压中.."
+unzip -q -o "$Project".zip
+#更新npm包
+echo "更新npm包.."
+cnpm update
+#重启项目
+pm2 restart $PM2NAME
+fi 
+
+#passport 
+if [ $1 == "passport" ] || [ $1 == "p" ] || [ $1 == "passportService" ];then
+Project="passportService"
+Branch="master"
+GitUrl=http://git.djdev.com/leovs/$Project.git
+PM2NAME="passport"
+echo "正在重启："$Project
+cd /opt/$Project/
+#压缩node_modules
+for filename in `ls`
+do
+#echo $filename
+if [ $filename == "node_modules" ];then
+zip -q -r "$Project".zip $filename  
+fi
+done
+
+mv "$Project".zip /opt/"$Project".zip
+cd /opt/
+#删除原文件夹
+rm -rf $Project/
+#重新拉git
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+#解压node_modules
+mv /opt/"$Project".zip /opt/$Project/
+echo "解压中.."
+unzip -q -o "$Project".zip
+#更新npm包
+echo "更新npm包.."
+cnpm update
+#重启项目
+pm2 restart $PM2NAME
+fi 
+
+
+#livemanage 
+if [ $1 == "livemanageservice" ] || [ $1 == "lms" ];then
+#config
+Project="liveManageService"
+Branch="master"
+GitUrl=http://git.djdev.com/chenan/$Project.git
+PM2NAME="liveManageService" #项目启动文件名
+echo "正在重启："$Project
+cd /opt/$Project/
+#压缩node_modules
+for filename in `ls`
+do
+#echo $filename
+if [ $filename == "node_modules" ];then
+zip -q -r "$Project".zip $filename  
+fi
+done
+
+mv "$Project".zip /opt/"$Project".zip
+cd /opt/
+#删除原文件夹
+rm -rf $Project/
+#重新拉git
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+#解压node_modules
+mv /opt/"$Project".zip /opt/$Project/
+echo "解压中.."
+unzip -q -o "$Project".zip
+#更新npm包
+echo "更新npm包.."
+cnpm update
+#重启项目
+pm2 restart $PM2NAME
+fi 
+
+
+
+#customerSevice
+if [ $1 == "customerService" ] || [ $1 == "cs" ];then
+#config
+Project="customerService"
+Branch="master"
+GitUrl=http://git.djdev.com/lixiaoyan/$Project.git
+PM2NAME="customerService" #项目启动文件名
+echo "正在重启："$Project
+cd /opt/$Project/
+#压缩node_modules
+for filename in `ls`
+do
+#echo $filename
+if [ $filename == "node_modules" ];then
+zip -q -r "$Project".zip $filename  
+fi
+done
+
+mv "$Project".zip /opt/"$Project".zip
+cd /opt/
+#删除原文件夹
+rm -rf $Project/
+#重新拉git
+git clone $GitUrl
+cd $Project/
+git checkout remotes/origin/"$Branch"
+git pull $GitUrl $Branch
+#解压node_modules
+mv /opt/"$Project".zip /opt/$Project/
+echo "解压中.."
+unzip -q -o "$Project".zip
+#更新npm包
+echo "更新npm包.."
+cnpm update
+#重启项目
+pm2 restart $PM2NAME
+fi 
+
+
+
+
+#通用结束事件
+echo "更新完成。"
+
+exit 0
