@@ -15,9 +15,9 @@
 * 选择创建时总是拉取镜像
 * 命令 `npm start`
 * 自动启动 测试环境建议选从不（仅启动一次）
-* 挂载卷 `/root/.pm2/logs:/root/.pm2/logs`以及时区文件
-* 配置node_type `front_end` or `back_end`  or `service`
-* 选择调度策略 `node＝true` or 在222上部署全部容器
+* 配置挂载卷 `/root/.pm2/logs:/root/.pm2/logs`以及时区文件
+* 配置标签 node_type `front_end` or `back_end`  or `service`
+* 配置调度策略 `node＝true` or 在222上部署全部容器
 * 健康检查 可选 
 
 ####升级服务
