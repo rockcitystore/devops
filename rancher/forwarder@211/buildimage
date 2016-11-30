@@ -6,20 +6,25 @@ fi
 
 
 ################################APPService################################
-if [ $1 == "app" ] || [ $1 == "APP" ] || [ $1 == "appService" ] || [ $1 == "AppService" ];then
+if [ $1 == "app" ] || [ $1 == "APP" ] || [ $1 == "appService" ] || [ $1 == "APPService" ];then
 
 #config
 #folder name ／ project name  , "/opt/APPService" 
-Project="APPService"
+#Project="APPService"
+Project=$1
 #git url
-GitUrl=http://git.djdev.com/leovs/$Project.git
+#GitUrl=http://git.djdev.com/leovs/$Project.git
+GitUrl=$2
 #git branch
-Branch="dejionline"
+#Branch="dejionline"
+Branch=$3
 #docker registry
 registry="192.168.33.211:5000"
+#docker image tag
+Version=$5
 
 
-#runnging
+#运行
 cd /opt/
 
 for filename in `ls`
@@ -36,8 +41,8 @@ npm install --registry=https://registry.npm.taobao.org
 
 #制作镜像
 echo "制作并推送镜像.."
-echo "docker build -t "$registry"/"${Project,,}":"$Branch "/opt/"$Project" && docker push "$registry"/"${Project,,}
-docker build -t $registry/${Project,,}:$Branch /opt/$Project && docker push $registry/${Project,,} && exit 0
+echo "docker build -t "$registry"/"${Project,,}":"$Version "/opt/"$Project" && docker push "$registry"/"${Project,,}
+docker build -t $registry/${Project,,}:$Version /opt/$Project && docker push $registry/${Project,,} && exit 0
 #防止上一条出错未执行exit 0
 echo "更新出错" && exit 0
 fi
